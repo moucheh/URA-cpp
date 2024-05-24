@@ -20,6 +20,7 @@ int fib_mem(int n) {
 }
 
 int fib_din(int n) {
+	if (n < 2) return n;
 	int f_n_2 = 0;
 	int f_n_1 = 1;
 	int f_n;
