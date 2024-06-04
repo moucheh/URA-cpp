@@ -8,7 +8,7 @@
 /*
 	slozenost: O(n^2)
 	iteratori: bidirectional
-	memoraija: inplace
+	memorija: inplace
 	stabilnost: stabilan
 */
 

@@ -7,7 +7,7 @@
 /*
 	slozenost: O(n^(3/2))
 	iteratori: random access
-	memoraija: inplace
+	memorija: inplace
 	stabilnost: nije stabilan
 */
 
