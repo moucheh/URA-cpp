@@ -7,7 +7,8 @@
 /*
 	data je definicija strukture Element ispod
 
-	dobije se std::list sa elementima tipa Element, sortiranim po kljucu u opadajucem redoslijedu
+	dobije se std::list sa elementima tipa Element,
+	sortiranim po kljucu u opadajucem redoslijedu
 
 	napisati funkciju potpisa
 	template<typename K, typename V>
@@ -15,6 +16,10 @@
 	koja vrati pointer na element koji ima isti kljuc, a nullptr u suprotnom
 
 	obrazloziti algoritam u kratkim crtama i koja je slozenost moguca
+
+	O(n) je slozenost, radi se sekvencijalno pretrazivanje,
+	jer su iteratori bidirekcioni
+	moguce je napraviti i druge
 
 */
 
