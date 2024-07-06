@@ -3,16 +3,16 @@
 #include <cstdlib>
 #include <algorithm>
 
-//ukoliko se indeksi krecu od 0 do n-1
-//racunanje djece cvora je malo drukcije,
+// ukoliko se indeksi krecu od 0 do n-1
+// racunanje djece cvora je malo drukcije,
 
-//lijevo dijete cvora je indeks_cvora * 2 + 1
-//desno dijete cvora je indeks_cvora * 2 + 2
+// lijevo dijete cvora je indeks_cvora * 2 + 1
+// desno dijete cvora je indeks_cvora * 2 + 2
 
-//roditelj cvora se racuna na nacin,
-//ako je indeks neparan, samo se podijeli s 2
-//ukoliko je paran, potrebno je i oduzeti 1
-//ovo je najbolje da se skicira
+// roditelj cvora se racuna na nacin,
+// ako je indeks neparan, samo se podijeli s 2
+// ukoliko je paran, potrebno je i oduzeti 1
+// ovo je najbolje da se skicira
 
 template<typename T>
 void rearrange_downwards(T* arr, int root, int last_child) {
@@ -30,7 +30,6 @@ void rearrange_downwards(T* arr, int root, int last_child) {
 
 template<typename T>
 void heapsort(T* arr, int size) {
-
 	/*
 		i = size / 2 - !(size & 1)
 
@@ -39,21 +38,23 @@ void heapsort(T* arr, int size) {
 
 		ukoliko je size neparan, size & 1 ce biti 1,
 		kada se negacija, dobije se 0
+
+		na ovaj nacin se preskace posljendji nivo
+		uspostavlja se gomila krenuvsi od predposljednjeg nivoa
 	*/
 
-	// uspostavlja se gomila krenuvsi od prvog cvora koji nije list
+	--size; // sada je size indeks posljednjeg elementa
 
 	for (auto i = size / 2 - !(size & 1); i >= 0; --i)
 		rearrange_downwards(arr, i, size);
 
-	auto i = size - 1;
+	// mijenja se prvi i posljednji,
+	// te se uspostavlja gomila za elemente od 0 do n - i - 1
 
-	// mijenja se prvi i posljednji, te se uspostavlja gomila za elemente od 0 do n-1
+	while (size > 0) {
+		std::swap(arr[0], arr[size]);
 
-	while (i > 0) {
-		std::swap(arr[0], arr[i]);
-
-		rearrange_downwards(arr, 0, --i);
+		rearrange_downwards(arr, 0, --size);
 	}
 }
 
@@ -63,25 +64,37 @@ int main() {
 	for (auto i = 0; i < 1000; ++i) {
 		std::vector<int> v;
 		v.reserve(1000);
-		for (auto i = 0; i < 999; ++i) {
+		for (auto i = 0; i < 1000; ++i) {
 			v.push_back(rand() % 1000 + 1);
 		}
 
-		// for (const auto& el : v) {
-		// 	std::cout << el << ' ';
-		// }
-		// std::cout << std::endl;
-
 		heapsort(v.data(), v.size());
 
-		// for (const auto& el : v) {
-		// 	std::cout << el << ' ';
-		// }
-		// std::cout << std::endl;
 		if (std::is_sorted(v.begin(), v.end())) ++counter;
 	}
 
 	std::cout << "passed " << counter << " / 1000 times" << std::endl;
+
+	std::vector<int> v;
+	v.reserve(50);
+	for (auto i = 0; i < 50; ++i) {
+		v.push_back(rand() % 1000 + 1);
+	}
+
+	for (const auto& el : v) {
+		std::cout << el << ' ';
+	}
+	std::cout << std::endl;
+
+	heapsort(v.data(), v.size());
+
+	for (const auto& el : v) {
+		std::cout << el << ' ';
+	}
+	std::cout << std::endl << "sorted: "
+			  << std::boolalpha
+			  << std::is_sorted(v.begin(), v.end())
+			  << std::endl;
 
 	return 0;
 }
