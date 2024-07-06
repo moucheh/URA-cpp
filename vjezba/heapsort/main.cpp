@@ -32,18 +32,18 @@ template<typename T>
 void heapsort(T* arr, int size) {
 
 	/*
-		i = size / 2 + ~(size & 1)
+		i = size / 2 - !(size & 1)
 
 		ukoliko je size paran, size & 1 ce biti 0,
-		kada se uradi prvi komplement, dobije se -1
+		kada se uradi negacija, dobije se 1
 
 		ukoliko je size neparan, size & 1 ce biti 1,
-		kada se uradi prvi komplement, dobije se 0
+		kada se negacija, dobije se 0
 	*/
 
 	// uspostavlja se gomila krenuvsi od prvog cvora koji nije list
 
-	for (auto i = size / 2 + ~(size & 1); i >= 0; --i)
+	for (auto i = size / 2 - !(size & 1); i >= 0; --i)
 		rearrange_downwards(arr, i, size);
 
 	auto i = size - 1;
@@ -63,7 +63,7 @@ int main() {
 	for (auto i = 0; i < 1000; ++i) {
 		std::vector<int> v;
 		v.reserve(1000);
-		for (auto i = 0; i < 1000; ++i) {
+		for (auto i = 0; i < 999; ++i) {
 			v.push_back(rand() % 1000 + 1);
 		}
 
