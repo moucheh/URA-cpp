@@ -37,7 +37,7 @@ void heapsort(T* arr, int size) {
 		ukoliko je size paran, size & 1 ce biti 0,
 		kada se uradi prvi komplement, dobije se -1
 
-		ukoliko je size neparan, size & ce biti 1,
+		ukoliko je size neparan, size & 1 ce biti 1,
 		kada se uradi prvi komplement, dobije se 0
 	*/
 
