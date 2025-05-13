@@ -4,10 +4,7 @@
 namespace my {
 	template<typename forward_it, typename lambda>
 	forward_it remove_if(forward_it begin, forward_it end, const lambda& predicate) {
-		auto temp = begin;
-
-		while (!predicate(*temp)) ++temp;
-		begin = temp;
+		while (!predicate(*begin)) ++begin;
 
 		if (begin != end) {
 			auto it = begin; ++it;

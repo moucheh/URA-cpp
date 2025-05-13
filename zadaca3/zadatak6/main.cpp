@@ -22,8 +22,8 @@ void print_combinations(int n, int s, std::vector<int>& combination, int current
 
 int main() {
 	std::vector<int> combination;
-	int n = 7;
-	int s = 15;
+	int n = 8;
+	int s = 10;
 	print_combinations(n, s, combination, 0);
 	return 0;
 }
